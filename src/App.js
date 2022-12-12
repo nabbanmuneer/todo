@@ -13,9 +13,9 @@ function App() {
       <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
     </div>
     <div className="input">
-      <input type="text"  value={todo} onChange={(e)=>settodo(e.target.che)} placeholder="🖊️ Add item..." />
+      <input type="text"  value={todo} onChange={(e)=>settodo(e.target.value)} placeholder="🖊️ Add item..." />
       <i onClick={()=>settodos(
-        [...todos,{id:Date.now(),text :todo,status:false}]
+        [...todos,{id:Date.now(),text:todo,status:false}]
         )}
        className="fas fa-plus"></i>
     </div>
@@ -37,7 +37,16 @@ function App() {
             <p>{value.text}</p>
           </div>
           <div className="right">
-            <i className="fas fa-times"></i>
+            <i onClick={(e)=>settodos(todos.filter(value2=>{
+              if(value2.id===value.id){
+              return null
+             
+            }else{
+              console.log("change",value);
+              return value2
+            }
+           }))} 
+            className="fas fa-times"></i>
           </div>
         </div>)
       })
